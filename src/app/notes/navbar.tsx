@@ -8,10 +8,10 @@ import { neobrutalism } from "@clerk/themes";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { AddNoteDialog } from "@/components/add-note-dialog";
+import { AddEditNoteDialog } from "@/components/add-edit-note-dialog";
 
 export const NavBar = () => {
-  const [openNoteDialog, setOpenNoteDialog] = useState(false);
+  const [openAddEditNoteDialog, setOpenAddEditNoteDialog] = useState(false);
   return (
     <>
       <div className="p-4 shadow">
@@ -35,7 +35,7 @@ export const NavBar = () => {
               showName
             />
 
-            <Button onClick={() => setOpenNoteDialog(true)}>
+            <Button onClick={() => setOpenAddEditNoteDialog(true)}>
               <Plus size={20} className="mr-2" />
               Add data
             </Button>
@@ -43,7 +43,10 @@ export const NavBar = () => {
         </div>
       </div>
 
-      <AddNoteDialog open={openNoteDialog} setOpen={setOpenNoteDialog} />
+      <AddEditNoteDialog
+        open={openAddEditNoteDialog}
+        setOpen={setOpenAddEditNoteDialog}
+      />
     </>
   );
 };
