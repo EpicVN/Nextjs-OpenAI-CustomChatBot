@@ -8,7 +8,7 @@ import { neobrutalism } from "@clerk/themes";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { AddNoteDialog } from "@/components/ui/add-note-dialog";
+import { AddNoteDialog } from "@/components/add-note-dialog";
 
 export const NavBar = () => {
   const [openNoteDialog, setOpenNoteDialog] = useState(false);

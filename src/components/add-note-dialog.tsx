@@ -13,14 +13,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./form";
+} from "./ui/form";
 
 import { createNoteSchema, CreateNoteSchema } from "@/lib/validation/note";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "./input";
-import { Textarea } from "./textarea";
-import { LoadingButton } from "./loading-button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { LoadingButton } from "./ui/loading-button";
 import { toast, Toaster } from "sonner";
 import { useRouter } from "next/navigation";
 
