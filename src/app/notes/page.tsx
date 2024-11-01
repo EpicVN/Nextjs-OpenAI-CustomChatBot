@@ -1,13 +1,25 @@
-import { Metadata } from "next"
+import { Metadata } from "next";
+
+import { useState } from "react";
+import { auth } from "@clerk/nextjs/server";
+import prisma from "@/lib/db/prisma";
 
 export const metadata: Metadata = {
-    title: "Chatbot - NoteApp"
-}
+  title: "Chatbot - NoteApp",
+};
 
-export default function NotesPage() {
-    return (
-        <div>
-            Note
-        </div>
-    )
+export default async function NotesPage() {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized")
+  }
+
+  const allNotes = await prisma.note.findMany({ where: { userId } })
+
+  return (
+    <div>
+      {JSON.stringify(allNotes)}
+    </div>
+  )
 }

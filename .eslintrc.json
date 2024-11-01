@@ -1,3 +1,6 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript", "prettier"]
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "rulesF": {
+    "no-unused-vars": "off"
+  }
 }
