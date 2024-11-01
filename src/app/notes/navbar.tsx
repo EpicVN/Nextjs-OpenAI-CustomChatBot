@@ -1,16 +1,22 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import logo from "@/assets/logo.png";
-import { UserButton } from "@clerk/nextjs";
-import { neobrutalism } from "@clerk/themes";
-import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { UserButton } from "@clerk/nextjs";
+import { neobrutalism, dark } from "@clerk/themes";
+
+import { Button } from "@/components/ui/button";
 import { AddEditNoteDialog } from "@/components/add-edit-note-dialog";
+import { ThemeToggleButton } from "@/components/theme-toggle-button";
+
+import logo from "@/assets/logo.png";
+import { useTheme } from "next-themes";
 
 export const NavBar = () => {
+  const { theme } = useTheme();
   const [openAddEditNoteDialog, setOpenAddEditNoteDialog] = useState(false);
   return (
     <>
@@ -30,10 +36,12 @@ export const NavBar = () => {
                     height: "2.5rem",
                   },
                 },
-                baseTheme: neobrutalism,
+                baseTheme: theme === "dark" ? dark : neobrutalism,
               }}
               showName
             />
+
+            <ThemeToggleButton />
 
             <Button onClick={() => setOpenAddEditNoteDialog(true)}>
               <Plus size={20} className="mr-2" />
