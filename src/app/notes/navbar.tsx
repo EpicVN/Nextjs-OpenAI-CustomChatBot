@@ -14,6 +14,7 @@ import { ThemeToggleButton } from "@/components/theme-toggle-button";
 
 import logo from "@/assets/logo.png";
 import { useTheme } from "next-themes";
+import { AIChatbotButton } from "@/components/ai-chatbot-button";
 
 export const NavBar = () => {
   const { theme } = useTheme();
@@ -47,6 +48,8 @@ export const NavBar = () => {
               <Plus size={20} className="mr-2" />
               Add data
             </Button>
+
+            <AIChatbotButton />
           </div>
         </div>
       </div>
