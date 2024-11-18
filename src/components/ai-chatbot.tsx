@@ -24,31 +24,6 @@ export const AIChatbot = ({ open, onClose }: AIChatbotProps) => {
     error,
   } = useChat(); //    /api/chat
 
-  const [input1, setInput1] = useState('');
-  const [response, setResponse] = useState<any>([]);
-
-  // Function to handle submitting the input
-  const handleSubmit1 = async () => {
-    try {
-      // Make a POST request to your API route
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: input }),
-      });
-
-      // Parse the response
-      const data = await res.json();
-
-      // Update the response state with data from the API
-      setResponse(data);
-    } catch (error) {
-      console.error('Error fetching the chat response:', error);
-    }
-  };
-
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -78,8 +53,8 @@ export const AIChatbot = ({ open, onClose }: AIChatbotProps) => {
           <X size={30} />
         </button>
         <div className="mt-3 h-full overflow-y-auto px-3" ref={scrollRef}>
-          {response?.map((message: Pick<Message, "role" | "content">, index: Key | null | undefined) => (
-            <ChatMessage message={message} key={index} />
+          {messages.map((message) => (
+            <ChatMessage message={message} key={message.id} />
           ))}
           
           {isLoading && lastMessageIsUser && (
@@ -107,7 +82,7 @@ export const AIChatbot = ({ open, onClose }: AIChatbotProps) => {
             </div>
           )}
         </div>
-        <form onSubmit={handleSubmit1} className="m-3 flex gap-1">
+        <form onSubmit={handleSubmit} className="m-3 flex gap-1">
           <Button
             title="Clear chat"
             variant="outline"
